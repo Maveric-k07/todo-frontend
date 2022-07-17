@@ -1,38 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import { getTodos } from '../API/api';
+import AddTask from './AddTask';
 import TaskItem from './TaskItem';
-
-// const fetch = require('node-fetch');
-// const axios = require('axios');
 
 const TaskList = () => {
   
     let [tasks, setTasks] = useState([]);
     
-    useEffect(() => {
-       const newTodo = getTodos();
-       console.log(newTodo);
-       setTasks(newTodo);
-    }, [])
+    let getTasks = async () => {
+        const newTodo = await getTodos();
+        console.log(newTodo.todos);
+        setTasks(newTodo.todos);
+     }
 
-    // let getTasks = async () => {
-    //     let response = await fetch("/api/");
-    //     let data = await response.json();
-    //     setTasks(data);
-    
-    //     // try {
-    //     //     const response = await axios.get("/api/notes/");
-    //     //     let data = await response.json();
-    //     //     setNotes(data);
-    //     //   } catch (error) {
-    //     //     console.error(error);
-    //     // }
-    // }
+    useEffect(() => {
+        getTasks();
+      }, [])
+
+    useEffect(() => {
+        getTasks();
+    },[tasks])
 
     return (
 		<ul className='list-group'>
-			{tasks.map((todo) => (
-				<TaskItem id={todo.id} name={todo.name} completed={todo.completed} />
+            <AddTask tasks={tasks} setTasks={setTasks}/>
+			{tasks?.map((task) => (
+				<TaskItem id={task._id} name={task.name} completed={task.completed} />
 			))}
 		</ul>
 	);

@@ -8,7 +8,7 @@ export const getTodos = (
             return { todos };
         }
     }
-)
+);
 
 export const addTodos = (
     async(newTodo) => {
@@ -24,4 +24,33 @@ export const addTodos = (
             return { todos };
         }
     }
-)
+);
+
+export const deleteTodo = (
+	async (id) => {
+		const resp = await fetch(`/api/${id}`, {
+			method: 'DELETE',
+		});
+
+		if (resp.ok) {
+			return { id: id };
+		}
+	}
+);
+
+export const toggleComplete = (
+	async (id, completed) => {
+		const resp = await fetch(`/api/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ completed: !completed }),
+		});
+
+		if (resp.ok) {
+			const todo = await resp.json();
+			return { todo };
+		}
+	}
+);

@@ -2,6 +2,10 @@ label {
     color: white;
 }
 
+.message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .form-control {
     width: 30em;

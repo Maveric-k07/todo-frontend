@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addTodos } from "../API/api";
 import "../styles/addtask.css";
 
 function AddTask({tasks ,setTask}) {
 
+  const [message, setMessage] = useState("");
   const [text, setText] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     const newTodo = addTodos({name:text});
     setText("");
-    setTask([...tasks, newTodo])
+    setMessage("Added task in to-do list");
+    setTask([...tasks, newTodo]);
   };
 
+
+  useEffect(() => {
+    setInterval(() => {
+      setMessage("");
+    }, 10000);
+  },[message]);
+
   return (
-    <form onSubmit={handleSubmit} className="row g-3">
+    <>
+      <form onSubmit={handleSubmit} className="row g-3">
         <label className='sr-only'>Add new task in the list</label>
         <div className="col-auto">
         <input
@@ -30,6 +40,8 @@ function AddTask({tasks ,setTask}) {
         </button>
         </div>
     </form>
+    <label className='message'>{message}</label>
+    </>
 );
 }
 

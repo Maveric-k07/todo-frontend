@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { addTodos } from "../API/api";
+import "../styles/addtask.css";
 
 function AddTask({tasks ,setTask}) {
 
@@ -12,8 +13,9 @@ function AddTask({tasks ,setTask}) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='form-inline mt-3 mb-3'>
-        <label className='sr-only'>Name</label>
+    <form onSubmit={handleSubmit} className="row g-3">
+        <label className='sr-only'>Add new task in the list</label>
+        <div className="col-auto">
         <input
             type='text'
             className='form-control mb-2 mr-sm-2'
@@ -21,10 +23,12 @@ function AddTask({tasks ,setTask}) {
             value={text}
             onChange={(event) => setText(event.target.value)}
         ></input>
-
-        <button type='submit' className='btn btn-primary mb-2'>
+        </div>
+        <div className="col-auto">
+        <button type='submit'>
             Submit
         </button>
+        </div>
     </form>
 );
 }

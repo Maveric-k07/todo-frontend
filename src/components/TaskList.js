@@ -22,12 +22,13 @@ const TaskList = () => {
     },[tasks])
 
     return (
-		<ul className='list-group'>
-            <AddTask tasks={tasks} setTasks={setTasks}/>
-			{tasks?.map((task) => (
-				<TaskItem id={task._id} name={task.name} completed={task.completed} />
+		<div className='row'>
+      
+      <AddTask tasks={tasks} setTasks={setTasks}/>
+			{tasks?.map((task, index) => (
+				<TaskItem id={task._id} name={task.name} completed={task.completed} index={index} />
 			))}
-		</ul>
+    </div>
 	);
 }
 

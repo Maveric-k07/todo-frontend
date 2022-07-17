@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { deleteTodo, toggleComplete } from '../API/api'
+import '../styles/taskitem.css';
 
 
+const TaskItem = ({ id, name, completed, index }) => {
 
-const TaskItem = ({ id, name, completed }) => {
-
-	const [complete, setComplete] = useState(false);
+	const [complete, setComplete] = useState(completed);
 
     const handleDeleteClick = () => {
 		deleteTodo(id);
@@ -21,16 +21,16 @@ const TaskItem = ({ id, name, completed }) => {
 	}
     
     return (
-		<li className={`list-group-item ${completed && 'list-group-item-success'}`}>
-			<div className='d-flex justify-content-between'>
-				<span className='d-flex align-items-center'>
-					{name}
-				</span>
-				<button onClick={handleCompleteClick} className={complete === false ? 'btn btn-primary' : 'btn btn-danger'} >Mark as complete</button>
-				<button onClick={handleDeleteClick} className='btn btn-danger'>Delete</button>
-
+		<div className='col-lg-4 col-md-6'>
+			<div className={complete === true ? 'card completed-card' : 'card incomplete-card'}>
+				<div className='card-body'>
+					<h5 className="card-title taskname">{name}</h5>
+					<hr className="solid"/>
+					<button onClick={handleCompleteClick} className={complete === false ? 'incomplete' : 'complete'}>{complete === false ? 'Mark as completed' : 'Mark as incomplete'}</button>
+					<span onClick={handleDeleteClick} >Delete</span>
+				</div>
 			</div>
-		</li>
+		</div>
 	);
 }
 

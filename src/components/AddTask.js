@@ -18,29 +18,31 @@ function AddTask({tasks ,setTask}) {
   useEffect(() => {
     setInterval(() => {
       setMessage("");
-    }, 10000);
+    }, 30000);
   },[message]);
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="row g-3">
-        <label className='sr-only'>Add new task in the list</label>
-        <div className="col-auto">
-        <input
-            type='text'
-            className='form-control mb-2 mr-sm-2'
-            placeholder='Enter the task here'
-            value={text}
-            onChange={(event) => setText(event.target.value)}
-        ></input>
-        </div>
-        <div className="col-auto">
-        <button type='submit'>
-            Submit
-        </button>
-        </div>
-    </form>
-    <label className='message'>{message}</label>
+      <div className="container" style={{paddingLeft: "50px"}}>
+        <label style={{color: "white"}} >Add new task in the list</label>
+        <form onSubmit={handleSubmit} className="row g-3">
+          <div className="col-auto">
+          <input
+              type='text'
+              className='form-control mb-2 mr-sm-2'
+              placeholder='Enter the task here'
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+          ></input>
+          </div>
+          <div className="col-auto">
+          <button type='submit'>
+              Submit
+          </button>
+          </div>
+      </form>
+      <label className='message'>{message}</label>
+    </div>
     </>
 );
 }

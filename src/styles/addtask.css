@@ -1,10 +1,6 @@
-label {
-    color: white;
-}
-
 .message {
     margin-top: 10px;
-    margin-bottom: 10px;
+    color: white;
 }
 
 .form-control {
@@ -12,12 +8,14 @@ label {
     box-shadow: none;
     background-color: #5C5C5C;
     border: 0;
+    color:white;
 }
 
 .form-control:focus {
     box-shadow: none;
     background-color: #5C5C5C;
     border: 0;
+    color:white;
 }
 
 .form-control::placeholder {

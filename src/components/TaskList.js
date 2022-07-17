@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { getTodos } from '../API/api';
 import AddTask from './AddTask';
 import TaskItem from './TaskItem';
+import '../styles/tasklist.css';
 
 const TaskList = () => {
   
@@ -22,13 +23,14 @@ const TaskList = () => {
     },[tasks])
 
     return (
-		<div className='row'>
-      
+		<>
       <AddTask tasks={tasks} setTasks={setTasks}/>
-			{tasks?.map((task, index) => (
-				<TaskItem id={task._id} name={task.name} completed={task.completed} index={index} />
-			))}
-    </div>
+      <div className='row'>
+        {tasks?.map((task, index) => (
+          <TaskItem id={task._id} name={task.name} completed={task.completed} index={index} />
+        ))}
+      </div>
+    </>
 	);
 }
 

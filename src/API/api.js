@@ -2,7 +2,13 @@ import { nanoid } from "nanoid";
 
 export const getTodos = (
     async() => {
-        const response = await fetch('/api/');
+        const response = await fetch('api/', {
+			method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+				'Accept': 'application/json'
+            },
+		});
         if (response.ok) {
             const todos = await response.json();
             return { todos };
@@ -12,7 +18,7 @@ export const getTodos = (
 
 export const addTodos = (
     async(newTodo) => {
-        const response = await fetch('https://mytodo-node-backend.herokuapp.com/api/', {
+        const response = await fetch('api/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +34,7 @@ export const addTodos = (
 
 export const deleteTodo = (
 	async (id) => {
-		const resp = await fetch(`https://mytodo-node-backend.herokuapp.com/api/${id}`, {
+		const resp = await fetch(`api/${id}`, {
 			method: 'DELETE',
 		});
 
@@ -40,7 +46,7 @@ export const deleteTodo = (
 
 export const toggleComplete = (
 	async (id, completed) => {
-		const resp = await fetch(`https://mytodo-node-backend.herokuapp.com/api/${id}`, {
+		const resp = await fetch(`api/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
